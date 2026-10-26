@@ -1,0 +1,2856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="theme-color" content="#040b18" />
+
+  <!-- Primary SEO Meta Tags -->
+  <title>FitCore — Solo Leveling System Diet, Fitness, Water &amp; BMI Tracker</title>
+  <meta name="title" content="FitCore — Solo Leveling System Diet, Fitness, Water &amp; BMI Tracker" />
+  <meta name="description" content="FitCore is a free Solo Leveling System-inspired personal diet, water intake, daily quest workout, running (km), and BMI tracker. 100% private local storage with interactive graphs and JSON backup." />
+  <meta name="keywords" content="FitCore, Solo Leveling fitness tracker, Solo Leveling daily quest workout, System UI diet tracker, BMI calculator, daily water tracker, running km tracker, calorie and protein counter" />
+  <meta name="author" content="Krishna" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Social Media Preview Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="FitCore" />
+  <meta property="og:title" content="FitCore — Solo Leveling System Diet, Fitness, Water &amp; BMI Tracker" />
+  <meta property="og:description" content="Level up your health with a glowing crystal-blue System HUD. Track daily quests, running (km), custom diet plans, water intake, and BMI with 100% local privacy." />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FitCore — Solo Leveling System Diet, Fitness, Water &amp; BMI Tracker" />
+  <meta name="twitter:description" content="Customizable Solo Leveling System HUD for tracking daily workouts, running km, calories, protein, water intake, and BMI." />
+
+  <!-- Embedded Glowing Crystal-Blue SVG Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23030812' stroke='%2300d4ff' stroke-width='4'/%3E%3Cpolygon points='32,8 52,32 32,56 12,32' fill='%23061a38' stroke='%2380eaff' stroke-width='3'/%3E%3Ctext x='32' y='40' font-family='sans-serif' font-size='24' font-weight='bold' fill='%2300d4ff' text-anchor='middle'%3E!%3C/text%3E%3C/svg%3E" />
+
+  <!-- JSON-LD Structured Data Schema for Google Rich Results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "FitCore",
+    "alternateName": "FitCore — Solo Leveling System Diet, Fitness, Water & BMI Tracker",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web, Windows, Android, iOS",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "Krishna"
+    },
+    "description": "A customizable Solo Leveling System HUD web application to track daily diet, calories, protein, water intake, running kilometers, calisthenics quests, and BMI stored locally in your browser."
+  }
+  </script>
+
+  <!-- Google Fonts: Orbitron (Headers), Rajdhani (Clean UI), Share Tech Mono (Numbers) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       SOLO LEVELING "SYSTEM" UI - CLEAN, USER-FRIENDLY CRYSTAL BLUE EDITION
+       Pure Handwritten CSS3 | Optimized for PC & Android
+       ========================================================================== */
+    :root {
+      --bg-dark: #030812;
+      --bg-gradient: radial-gradient(circle at 50% 0%, rgba(0, 140, 255, 0.22) 0%, transparent 60%),
+                     linear-gradient(180deg, #030812 0%, #061226 50%, #030812 100%);
+      --panel-bg: rgba(8, 22, 46, 0.78);
+      --panel-inner: rgba(4, 14, 32, 0.72);
+      --panel-hover: rgba(12, 34, 68, 0.85);
+      --cyan: #00d4ff;
+      --cyan-light: #80eaff;
+      --blue: #0077ff;
+      --green: #00f59b;
+      --gold: #ffcc33;
+      --red: #ff3b6b;
+      --text-white: #f0f9ff;
+      --text-soft: #9cc2e6;
+      --text-dim: #5d82a6;
+      --border-cyan: rgba(0, 212, 255, 0.52);
+      --border-soft: rgba(0, 212, 255, 0.24);
+      --glow-panel: 0 0 20px rgba(0, 212, 255, 0.20), inset 0 0 18px rgba(0, 119, 255, 0.12);
+      --glow-strong: 0 0 25px rgba(0, 212, 255, 0.42), inset 0 0 15px rgba(0, 212, 255, 0.2);
+      --font-head: 'Orbitron', sans-serif;
+      --font-body: 'Rajdhani', sans-serif;
+      --font-mono: 'Share Tech Mono', monospace;
+      --radius: 10px;
+      --radius-sm: 6px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-dark);
+      background-image: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-white);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.45;
+      overflow-x: hidden;
+      padding-bottom: 40px;
+    }
+
+    /* Subtle Holographic Grid Background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* ==========================================================================
+       REUSABLE SYSTEM PANEL & CORNER BRACKETS
+       ========================================================================== */
+    .sys-panel {
+      position: relative;
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius);
+      box-shadow: var(--glow-panel);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* Iconic Solo Leveling Glowing Corner Accents */
+    .sys-panel::before,
+    .sys-panel::after {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-color: var(--cyan-light);
+      border-style: solid;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px var(--cyan));
+    }
+    .sys-panel::before {
+      top: 4px;
+      left: 4px;
+      border-width: 2px 0 0 2px;
+    }
+    .sys-panel::after {
+      bottom: 4px;
+      right: 4px;
+      border-width: 0 2px 2px 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(0, 212, 255, 0.7);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+    }
+
+    .section-badge {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 99px;
+      background: rgba(0, 212, 255, 0.14);
+      border: 1px solid var(--border-cyan);
+      color: var(--cyan-light);
+    }
+
+    /* ==========================================================================
+       BUTTONS & INPUT CONTROLS
+       ========================================================================== */
+    .btn {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.6px;
+      padding: 9px 15px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--cyan);
+      background: linear-gradient(180deg, rgba(0, 212, 255, 0.22) 0%, rgba(0, 119, 255, 0.28) 100%);
+      color: #ffffff;
+      text-shadow: 0 0 6px rgba(0, 212, 255, 0.6);
+      box-shadow: 0 0 12px rgba(0, 212, 255, 0.18);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      user-select: none;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: linear-gradient(180deg, rgba(0, 212, 255, 0.38) 0%, rgba(0, 119, 255, 0.48) 100%);
+      box-shadow: 0 0 18px rgba(0, 212, 255, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-sm {
+      padding: 6px 11px;
+      font-size: 0.85rem;
+    }
+
+    .btn-green {
+      border-color: var(--green);
+      background: linear-gradient(180deg, rgba(0, 245, 155, 0.2) 0%, rgba(5, 150, 105, 0.32) 100%);
+      color: #e6fff5;
+    }
+    .btn-green:hover {
+      background: linear-gradient(180deg, rgba(0, 245, 155, 0.35) 0%, rgba(5, 150, 105, 0.5) 100%);
+      box-shadow: 0 0 16px rgba(0, 245, 155, 0.4);
+    }
+
+    .btn-red {
+      border-color: var(--red);
+      background: linear-gradient(180deg, rgba(255, 59, 107, 0.18) 0%, rgba(190, 18, 60, 0.3) 100%);
+      color: #ffe5ec;
+    }
+    .btn-red:hover {
+      background: linear-gradient(180deg, rgba(255, 59, 107, 0.35) 0%, rgba(190, 18, 60, 0.48) 100%);
+      box-shadow: 0 0 16px rgba(255, 59, 107, 0.4);
+    }
+
+    .btn-soft {
+      border-color: var(--border-soft);
+      background: rgba(6, 20, 44, 0.7);
+      color: var(--text-soft);
+      box-shadow: none;
+    }
+    .btn-soft:hover {
+      border-color: var(--cyan);
+      color: #ffffff;
+    }
+
+    .input-box,
+    .select-box {
+      width: 100%;
+      background: rgba(3, 10, 24, 0.88);
+      border: 1px solid rgba(0, 212, 255, 0.38);
+      border-radius: var(--radius-sm);
+      padding: 9px 12px;
+      color: #ffffff;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .input-box:focus,
+    .select-box:focus {
+      border-color: var(--cyan-light);
+      box-shadow: 0 0 12px rgba(0, 212, 255, 0.35);
+    }
+
+    .input-inline {
+      width: 82px;
+      padding: 5px 8px;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+    }
+
+    .label-text {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      margin-bottom: 4px;
+    }
+
+    /* Progress Bar Component */
+    .progress-wrap {
+      margin: 10px 0;
+    }
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: var(--text-soft);
+    }
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      background: rgba(2, 8, 20, 0.92);
+      border: 1px solid rgba(0, 212, 255, 0.35);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--blue), var(--cyan), var(--cyan-light));
+      box-shadow: 0 0 12px var(--cyan);
+      border-radius: 99px;
+      transition: width 0.35s ease;
+    }
+    .progress-fill.green {
+      background: linear-gradient(90deg, #059669, var(--green));
+      box-shadow: 0 0 12px var(--green);
+    }
+    .progress-fill.red {
+      background: linear-gradient(90deg, #e11d48, var(--red));
+      box-shadow: 0 0 12px var(--red);
+    }
+
+    /* ==========================================================================
+       1. TOP SYSTEM HEADER & PLAYER LEVEL BAR
+       ========================================================================== */
+    .top-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .sys-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      border: 2px solid var(--cyan);
+      background: radial-gradient(circle at 50% 30%, rgba(0, 212, 255, 0.32), rgba(4, 16, 36, 0.92));
+      box-shadow: 0 0 18px rgba(0, 212, 255, 0.5), inset 0 0 12px rgba(128, 234, 255, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-title-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .brand-title h1 {
+      font-family: var(--font-head);
+      font-size: clamp(1.35rem, 3vw, 1.85rem);
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: #ffffff;
+      text-shadow: 0 0 14px var(--cyan), 0 0 28px rgba(0, 119, 255, 0.7);
+      line-height: 1.1;
+    }
+
+    .hud-tag-badge {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 1.2px;
+      padding: 3px 9px;
+      border-radius: 4px;
+      background: rgba(0, 212, 255, 0.16);
+      border: 1px solid var(--cyan-light);
+      color: var(--cyan-light);
+      box-shadow: 0 0 10px rgba(0, 212, 255, 0.25);
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+
+    .player-level-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+
+    .lvl-pill {
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: rgba(255, 204, 51, 0.16);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+
+    .xp-mini-track {
+      width: 150px;
+      height: 8px;
+      background: rgba(2, 8, 20, 0.9);
+      border: 1px solid var(--border-cyan);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .xp-mini-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      width: 0%;
+      transition: width 0.35s ease;
+    }
+
+    .header-right-cluster {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .system-clock-display {
+      font-family: var(--font-mono);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--cyan-light);
+      background: rgba(3, 10, 24, 0.85);
+      border: 1px solid var(--border-cyan);
+      padding: 5px 12px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+      letter-spacing: 0.4px;
+      line-height: 1.4;
+      white-space: normal;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .sync-pct-badge {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      background: rgba(0, 245, 155, 0.12);
+      border: 1px solid rgba(0, 245, 155, 0.55);
+      color: var(--green);
+    }
+
+    /* ==========================================================================
+       2. IMPROVED DAY CONTROLLER BAR
+       ========================================================================== */
+    .day-controller {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 14px 18px;
+      background: linear-gradient(90deg, rgba(6, 22, 48, 0.92), rgba(10, 36, 76, 0.85), rgba(6, 22, 48, 0.92));
+      border: 1.5px solid var(--cyan);
+    }
+
+    .day-nav-cluster {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .date-picker-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(3, 10, 24, 0.9);
+      border: 1px solid var(--cyan);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+    }
+
+    .date-picker-input {
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      cursor: pointer;
+    }
+    .date-picker-input::-webkit-calendar-picker-indicator {
+      filter: invert(0.8) sepia(1) saturate(5) hue-rotate(165deg);
+      cursor: pointer;
+    }
+
+    .day-status-tag {
+      font-family: var(--font-head);
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(0, 245, 155, 0.18);
+      border: 1px solid var(--green);
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .day-status-tag.other-day {
+      background: rgba(255, 204, 51, 0.18);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .day-meta-cluster {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .streak-badge {
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      padding: 7px 13px;
+      border-radius: var(--radius-sm);
+      background: rgba(0, 212, 255, 0.12);
+      border: 1px solid var(--border-cyan);
+      color: var(--cyan-light);
+    }
+
+    /* ==========================================================================
+       MAIN 2-COLUMN DASHBOARD LAYOUT (PC & ANDROID)
+       ========================================================================== */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    @media (min-width: 960px) {
+      .main-grid {
+        grid-template-columns: 420px 1fr;
+      }
+    }
+
+    /* ==========================================================================
+       3. SIMPLE BMI CALCULATOR & DAILY RECOMMENDATIONS
+       ========================================================================== */
+    .bmi-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .bmi-form-grid .full-width {
+      grid-column: span 2;
+    }
+
+    .bmi-result-box {
+      background: var(--panel-inner);
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .bmi-score-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .bmi-big-num {
+      font-family: var(--font-head);
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 0 0 12px var(--cyan);
+    }
+
+    .bmi-category-pill {
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid currentColor;
+    }
+
+    .rec-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border-soft);
+      text-align: center;
+    }
+
+    .rec-mini-card {
+      background: rgba(6, 20, 44, 0.8);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      padding: 8px 6px;
+    }
+    .rec-mini-card .r-title {
+      font-size: 0.72rem;
+      color: var(--text-soft);
+      text-transform: uppercase;
+    }
+    .rec-mini-card .r-val {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: var(--cyan-light);
+      margin-top: 2px;
+    }
+
+    /* ==========================================================================
+       4. DEDICATED WATER TRACKER SECTION
+       ========================================================================== */
+    .water-layout {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .water-tank {
+      width: 90px;
+      height: 135px;
+      border: 2px solid var(--cyan);
+      border-radius: 12px;
+      background: rgba(2, 10, 24, 0.9);
+      box-shadow: inset 0 0 15px rgba(0, 212, 255, 0.25), 0 0 12px rgba(0, 212, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .water-tank-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0%;
+      background: linear-gradient(180deg, rgba(0, 212, 255, 0.75) 0%, rgba(0, 119, 255, 0.9) 100%);
+      box-shadow: 0 0 20px var(--cyan);
+      transition: height 0.4s ease;
+    }
+
+    .water-tank-pct {
+      position: relative;
+      z-index: 2;
+      font-family: var(--font-mono);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 1px 4px #000;
+    }
+
+    .water-cups-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0;
+    }
+
+    .water-cup {
+      width: 30px;
+      height: 34px;
+      border: 1.5px solid var(--border-cyan);
+      border-radius: 4px 4px 8px 8px;
+      background: rgba(3, 12, 28, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: var(--text-dim);
+    }
+
+    .water-cup.filled {
+      background: linear-gradient(180deg, rgba(0, 212, 255, 0.45), rgba(0, 119, 255, 0.75));
+      border-color: var(--cyan-light);
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 212, 255, 0.45);
+    }
+
+    .water-buttons-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    /* ==========================================================================
+       5. CUSTOMIZABLE FITNESS & DAILY QUESTS TRACKER
+       ========================================================================== */
+    .quest-item {
+      background: var(--panel-inner);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      padding: 13px;
+      margin-bottom: 10px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .quest-item.done {
+      border-color: var(--green);
+      background: linear-gradient(135deg, rgba(0, 245, 155, 0.10), rgba(4, 14, 32, 0.85));
+      box-shadow: 0 0 14px rgba(0, 245, 155, 0.15);
+    }
+
+    .quest-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .quest-left-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .check-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 2px solid var(--cyan);
+      background: rgba(0, 0, 0, 0.4);
+      color: transparent;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .quest-item.done .check-btn {
+      border-color: var(--green);
+      background: rgba(0, 245, 155, 0.25);
+      color: var(--green);
+      box-shadow: 0 0 10px rgba(0, 245, 155, 0.4);
+    }
+
+    .quest-name-input {
+      background: transparent;
+      border: 1px dashed transparent;
+      color: #ffffff;
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      width: 100%;
+      max-width: 240px;
+    }
+    .quest-name-input:hover,
+    .quest-name-input:focus {
+      border-color: var(--border-cyan);
+      background: rgba(3, 10, 24, 0.8);
+      outline: none;
+    }
+
+    .quest-controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .quest-numbers-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+
+    /* ==========================================================================
+       6. CUSTOMIZABLE DIET & CALORIE TRACKER
+       ========================================================================== */
+    .presets-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+
+    .preset-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(10, 32, 68, 0.85);
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      font-size: 0.9rem;
+    }
+
+    .preset-add-trigger {
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .preset-add-trigger:hover {
+      color: var(--cyan-light);
+    }
+
+    .preset-del-btn {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 0 3px;
+    }
+    .preset-del-btn:hover {
+      color: var(--red);
+    }
+
+    .food-log-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      background: var(--panel-inner);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      padding: 9px 12px;
+      margin-bottom: 8px;
+    }
+
+    /* ==========================================================================
+       7. HISTORY & INTERACTIVE GRAPHS MODAL
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 15, 0.86);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+    }
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 880px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: rgba(6, 18, 40, 0.96);
+      border: 1.5px solid var(--cyan);
+      border-radius: var(--radius);
+      box-shadow: var(--glow-strong);
+      padding: 22px;
+      position: relative;
+    }
+
+    .chart-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .chart-canvas-wrap {
+      width: 100%;
+      height: 270px;
+      background: rgba(3, 10, 24, 0.9);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    #history-chart-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .history-table-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 260px;
+      overflow-y: auto;
+    }
+
+    .history-day-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      background: var(--panel-inner);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+    }
+
+    /* Toast Notification */
+    .toast-wrap {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 340px;
+    }
+    .sys-toast {
+      background: rgba(5, 18, 42, 0.96);
+      border: 1.5px solid var(--cyan);
+      box-shadow: var(--glow-strong);
+      color: #ffffff;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+    }
+
+    /* Footer */
+    .app-footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 10px;
+      border-top: 1px solid var(--border-soft);
+      color: var(--text-soft);
+      font-size: 0.9rem;
+    }
+    .app-footer strong {
+      color: var(--cyan-light);
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 10px;
+      }
+      .sys-panel {
+        padding: 15px;
+      }
+      .water-layout {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+      }
+      .rec-cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating System Notification Toasts -->
+  <div class="toast-wrap" id="toast-wrap"></div>
+
+  <div class="container">
+
+    <!-- ======================================================================
+         1. TOP SYSTEM HEADER & QUICK ACTIONS (FITCORE BRANDING)
+         ====================================================================== -->
+    <header class="sys-panel top-header">
+      <div class="brand-left">
+        <div class="sys-icon" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="18,2 33,18 18,34 3,18" fill="rgba(0, 212, 255, 0.2)" stroke="#80eaff" stroke-width="2.2"/>
+            <polygon points="18,7 28,18 18,29 8,18" fill="rgba(0, 119, 255, 0.35)" stroke="#00d4ff" stroke-width="1.4"/>
+            <path d="M18 12V21M18 24.5V25.5" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-title">
+          <div class="brand-title-row">
+            <h1>FITCORE</h1>
+            <span class="hud-tag-badge">SYSTEM VITALS HUD</span>
+          </div>
+          <p class="brand-subtitle">Solo Leveling System Diet, Water, Fitness &amp; BMI Tracker</p>
+          <div class="player-level-strip">
+            <span class="lvl-pill" id="header-lvl-text">LEVEL 1</span>
+            <div class="xp-mini-track" title="Daily Progress XP">
+              <div class="xp-mini-fill" id="header-xp-fill"></div>
+            </div>
+            <span style="font-family:var(--font-mono); font-size:0.8rem; color:var(--cyan-light);" id="header-xp-text">0 / 100 XP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-right-cluster">
+        <!-- Automatic System Clock Display -->
+        <div class="system-clock-display" id="system-clock-display" title="System Date & Time">
+          📅 --/--/---- &nbsp; ⏰ --:--:--
+        </div>
+
+        <div class="header-actions">
+          <button class="btn btn-sm btn-soft" id="sfx-toggle-btn" title="Toggle System UI Sound Effects">🔊 SFX: ON</button>\n          <button class="btn btn-sm btn-soft" id="notifications-toggle-btn" title="Enable browser notifications">🔔 Notifications</button>
+          <button class="btn btn-sm" id="open-history-btn">📊 History &amp; Graphs</button>
+          <button class="btn btn-sm btn-soft" id="export-data-btn">⬇ Export (.json)</button>
+          <label for="import-data-file" class="btn btn-sm btn-soft" style="cursor:pointer;">⬆ Import (.json)</label>
+          <input type="file" id="import-data-file" accept=".json,application/json" style="display:none;" />
+          <button class="btn btn-sm btn-red" id="privacy-reset-btn" title="Clear all personal details and saved logs from this browser">🗑 Privacy Reset</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ======================================================================
+         2. IMPROVED DAY CONTROLLER BAR
+         ====================================================================== -->
+    <section class="sys-panel day-controller" aria-label="Day Controller">
+      <div class="day-nav-cluster">
+        <button class="btn btn-sm btn-soft" id="prev-day-btn">◀ Prev Day</button>
+
+        <div class="date-picker-box">
+          <input type="date" id="active-date-picker" class="date-picker-input" title="Select any date to view or edit" />
+          <span class="day-status-tag" id="day-status-badge">TODAY</span>
+        </div>
+
+        <button class="btn btn-sm btn-soft" id="next-day-btn">Next Day ▶</button>
+        <button class="btn btn-sm" id="jump-today-btn" style="display:none;">⚡ Jump to Today</button>
+      </div>
+
+      <div class="day-meta-cluster">
+        <div class="sync-pct-badge" id="sys-sync-display" title="Overall Daily Goal Completion">⚡ System Sync: 0%</div>
+        <div class="streak-badge" id="streak-display">🔥 Streak: 0 Days</div>
+        <button class="btn btn-sm btn-red" id="reset-day-btn" title="Clear logs and progress for this selected date">↺ Reset Day</button>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         MAIN 2-COLUMN RESPONSIVE GRID
+         ====================================================================== -->
+    <div class="main-grid">
+
+      <!-- LEFT COLUMN: YOUR PROFILE & BMI + WATER TRACKER + DAILY CHECK-IN -->
+      <div>
+
+        <!-- ==================================================================
+             3. YOUR PROFILE & BMI CALCULATOR (STARTS BLANK FOR PRIVACY)
+             ================================================================== -->
+        <section class="sys-panel">
+          <div class="section-header">
+            <h2 class="section-title">◈ Your Profile &amp; BMI</h2>
+            <span class="section-badge">Stored Locally</span>
+          </div>
+
+          <div class="bmi-form-grid">
+            <div class="full-width">
+              <label class="label-text" for="prof-name">Your Name (Optional)</label>
+              <input type="text" id="prof-name" class="input-box" placeholder="Enter your name" autocomplete="off" />
+            </div>
+            <div>
+              <label class="label-text" for="prof-height">Height (cm)</label>
+              <input type="number" id="prof-height" class="input-box" placeholder="cm (e.g. 175)" min="80" max="260" step="0.5" />
+            </div>
+            <div>
+              <label class="label-text" for="prof-weight">Weight (kg)</label>
+              <input type="number" id="prof-weight" class="input-box" placeholder="kg (e.g. 68)" min="20" max="300" step="0.1" />
+            </div>
+            <div>
+              <label class="label-text" for="prof-age">Age (Years)</label>
+              <input type="number" id="prof-age" class="input-box" placeholder="years (e.g. 22)" min="10" max="110" />
+            </div>
+            <div>
+              <label class="label-text" for="prof-goal">Fitness Goal</label>
+              <select id="prof-goal" class="select-box">
+                <option value="maintain">Maintain Weight</option>
+                <option value="lose">Lose Weight</option>
+                <option value="gain">Build Muscle / Gain</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Empty State Prompt (Shown until user enters Height & Weight) -->
+          <div class="bmi-result-box" id="bmi-empty-prompt" style="text-align:center; padding:18px 14px;">
+            <div style="font-family:var(--font-head); font-size:0.9rem; color:var(--cyan-light); margin-bottom:6px;">
+              [ AWAITING YOUR DETAILS ]
+            </div>
+            <p style="font-size:0.92rem; color:var(--text-soft);">
+              Enter your <strong>height (cm)</strong> and <strong>weight (kg)</strong> above to calculate your BMI and daily recommended targets.
+            </p>
+          </div>
+
+          <!-- Calculated BMI Score & Recommended Daily Targets (Hidden until Height & Weight entered) -->
+          <div class="bmi-result-box" id="bmi-calculated-box" style="display:none;">
+            <div class="bmi-score-row">
+              <div>
+                <div class="label-text" style="margin:0;">Your BMI Score</div>
+                <div class="bmi-big-num" id="bmi-value-text">--</div>
+              </div>
+              <div style="text-align:right;">
+                <span class="bmi-category-pill" id="bmi-category-badge">--</span>
+                <div style="font-size:0.8rem; color:var(--text-soft); margin-top:4px;" id="bmi-ideal-weight">
+                  Healthy Weight: --
+                </div>
+              </div>
+            </div>
+
+            <div class="rec-cards-grid">
+              <div class="rec-mini-card">
+                <div class="r-title">Rec. Calories</div>
+                <div class="r-val" id="rec-kcal-text">-- kcal</div>
+              </div>
+              <div class="rec-mini-card">
+                <div class="r-title">Rec. Running</div>
+                <div class="r-val" id="rec-run-text">-- km</div>
+              </div>
+              <div class="rec-mini-card">
+                <div class="r-title">Rec. Water</div>
+                <div class="r-val" id="rec-water-text">-- ml</div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn" id="apply-bmi-targets-btn" style="width:100%;">
+            ⚡ Sync Daily Targets to My BMI
+          </button>
+        </section>
+
+        <!-- ==================================================================
+             4. DEDICATED WATER TRACKER SECTION
+             ================================================================== -->
+        <section class="sys-panel">
+          <div class="section-header">
+            <h2 class="section-title">💧 Water Tracker</h2>
+            <span class="section-badge" id="water-liters-badge">0.00 L / 2.50 L</span>
+          </div>
+
+          <div class="water-layout">
+            <!-- Glowing Crystal Tank -->
+            <div class="water-tank" title="Daily Hydration Tank">
+              <div class="water-tank-fill" id="water-tank-fill"></div>
+              <div class="water-tank-pct" id="water-tank-pct">0%</div>
+            </div>
+
+            <!-- Water Readout & Editable Goal -->
+            <div style="width:100%;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+                <span class="label-text" style="margin:0;">Daily Water Goal (ml):</span>
+                <input type="number" id="water-goal-input" class="input-box input-inline" step="100" min="500" title="Edit Daily Water Goal (ml)" />
+              </div>
+
+              <div class="progress-wrap" style="margin-top:4px;">
+                <div class="progress-labels">
+                  <span>Drank Today</span>
+                  <span id="water-progress-label" style="font-family:var(--font-mono); color:var(--cyan-light);">0 / 2500 ml</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" id="water-bar-fill"></div>
+                </div>
+              </div>
+
+              <!-- Visual Glass Indicators (250ml per glass) -->
+              <div class="label-text" style="margin-top:8px;">Glasses (250 ml each — tap a glass):</div>
+              <div class="water-cups-grid" id="water-cups-container"></div>
+            </div>
+          </div>
+
+          <!-- Quick Add / Subtract Water Buttons -->
+          <div class="water-buttons-row">
+            <button class="btn btn-sm" id="water-add-250">+250 ml (1 Glass)</button>
+            <button class="btn btn-sm" id="water-add-500">+500 ml (1 Bottle)</button>
+            <button class="btn btn-sm btn-soft" id="water-sub-250">-250 ml</button>
+          </div>
+
+          <!-- Custom ml Add Row -->
+          <div style="display:flex; gap:8px; margin-top:10px;">
+            <input type="number" id="water-custom-input" class="input-box" placeholder="Custom ml (e.g. 350)" min="10" style="flex:1;" />
+            <button class="btn btn-sm" id="water-add-custom-btn">+ Add Custom ml</button>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             DAILY WEIGHT & NOTES CHECK-IN (FEEDS GRAPH & HISTORY)
+             ================================================================== -->
+        <section class="sys-panel">
+          <div class="section-header">
+            <h2 class="section-title">📝 Daily Weight &amp; Note Log</h2>
+            <span class="section-badge" id="checkin-date-badge">Today</span>
+          </div>
+          <div class="bmi-form-grid" style="margin-bottom:0;">
+            <div>
+              <label class="label-text" for="day-weight-input">Weight on this Day (kg)</label>
+              <input type="number" id="day-weight-input" class="input-box" step="0.1" placeholder="Enter weight (kg)" />
+            </div>
+            <div>
+              <label class="label-text" for="day-note-input">Daily Note / Workout Summary</label>
+              <input type="text" id="day-note-input" class="input-box" placeholder="Write a note for this day..." />
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- RIGHT COLUMN: DAILY FITNESS TRACKER + DIET & MEAL TRACKER -->
+      <div>
+
+        <!-- ==================================================================
+             5. CUSTOMIZABLE DAILY FITNESS & EXERCISE TRACKER
+             ================================================================== -->
+        <section class="sys-panel">
+          <div class="section-header">
+            <h2 class="section-title">⚔ Daily Fitness Tracker</h2>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <button class="btn btn-sm btn-soft" id="sync-fitness-bmi-btn" title="Update Running &amp; Exercise targets based on your BMI">⚡ Sync Targets to BMI</button>
+              <span class="section-badge" id="quests-summary-badge">0 / 4 Completed</span>
+            </div>
+          </div>
+
+          <!-- Overall Exercise Progress Bar -->
+          <div class="progress-wrap" style="margin-top:0; margin-bottom:16px;">
+            <div class="progress-labels">
+              <span>Daily Exercise Completion</span>
+              <span id="quests-pct-label" style="font-family:var(--font-mono); color:var(--green);">0%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill green" id="quests-bar-fill"></div>
+            </div>
+          </div>
+
+          <p style="font-size:0.86rem; color:var(--text-soft); margin-bottom:12px;">
+            💡 <strong>Tip:</strong> Click any exercise name, completed value (such as km ran), or daily target to edit it directly.
+          </p>
+
+          <!-- Dynamic Exercises List -->
+          <div id="quests-list-wrap"></div>
+
+          <!-- Add Custom Exercise Inline Form -->
+          <div style="background:var(--panel-inner); border:1px dashed var(--border-cyan); border-radius:var(--radius-sm); padding:12px; margin-top:14px;">
+            <div class="label-text" style="color:var(--cyan-light); margin-bottom:8px;">+ Add Custom Exercise</div>
+            <div style="display:grid; grid-template-columns: 2fr 1fr 1fr auto; gap:8px; align-items:center;" class="add-ex-grid">
+              <input type="text" id="new-ex-name" class="input-box" placeholder="Exercise (e.g. Cycling, Plank)" />
+              <input type="number" id="new-ex-target" class="input-box" placeholder="Target (10)" step="0.5" min="0.5" />
+              <select id="new-ex-unit" class="select-box">
+                <option value="km">km</option>
+                <option value="reps">reps</option>
+                <option value="mins">mins</option>
+                <option value="sets">sets</option>
+              </select>
+              <button class="btn btn-sm" id="add-ex-btn">+ Add</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             6. CUSTOMIZABLE DIET & MEAL TRACKER
+             ================================================================== -->
+        <section class="sys-panel">
+          <div class="section-header">
+            <h2 class="section-title">🥗 Diet &amp; Meal Tracker</h2>
+            <span class="section-badge" id="diet-remaining-badge">2000 kcal left</span>
+          </div>
+
+          <!-- Inline Editable Daily Calorie & Protein Targets -->
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:8px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="label-text" style="margin:0;">Daily Calorie Goal (kcal):</span>
+              <input type="number" id="diet-goal-input" class="input-box input-inline" step="50" min="800" title="Edit Daily Calorie Target" />
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="label-text" style="margin:0;">Protein Goal (g):</span>
+              <input type="number" id="protein-goal-input" class="input-box input-inline" step="5" min="20" title="Edit Daily Protein Target (g)" />
+            </div>
+          </div>
+
+          <!-- Calories Progress Bar -->
+          <div class="progress-wrap">
+            <div class="progress-labels">
+              <span>Calories Consumed Today</span>
+              <span id="diet-progress-label" style="font-family:var(--font-mono); color:var(--cyan-light);">0 / 2000 kcal</span>
+            </div>
+            <div class="progress-track" style="height:14px;">
+              <div class="progress-fill" id="diet-bar-fill"></div>
+            </div>
+          </div>
+
+          <!-- Protein Progress Bar -->
+          <div class="progress-wrap" style="margin-top:8px;">
+            <div class="progress-labels">
+              <span>Protein Consumed Today</span>
+              <span id="protein-progress-label" style="font-family:var(--font-mono); color:var(--green);">0 / 120 g</span>
+            </div>
+            <div class="progress-track" style="height:10px;">
+              <div class="progress-fill green" id="protein-bar-fill"></div>
+            </div>
+          </div>
+
+          <!-- Saved Custom Diet Plan / Quick Meals (1-Click Presets) -->
+          <div style="margin-top:16px; padding-top:14px; border-top:1px solid var(--border-soft);">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <span class="label-text" style="margin:0; color:var(--cyan-light);">
+                ⚡ My Saved Diet Plan / Quick Meals (Click any item to log):
+              </span>
+            </div>
+
+            <div class="presets-grid" id="diet-presets-wrap"></div>
+
+            <!-- Add New Saved Diet Preset Row -->
+            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+              <input type="text" id="preset-name-in" class="input-box" placeholder="New Saved Meal Name (e.g. Oats &amp; Eggs)" style="flex:2; min-width:160px;" />
+              <input type="number" id="preset-kcal-in" class="input-box" placeholder="Calories" style="width:105px;" min="0" />
+              <input type="number" id="preset-prot-in" class="input-box" placeholder="Protein (g)" style="width:110px;" min="0" />
+              <button class="btn btn-sm btn-soft" id="save-preset-btn">★ Save to Diet Plan</button>
+            </div>
+          </div>
+
+          <!-- Log a Food Item to Today's Food Log -->
+          <div style="background:var(--panel-inner); border:1px solid var(--border-soft); border-radius:var(--radius-sm); padding:12px; margin-bottom:14px;">
+            <div class="label-text" style="color:var(--cyan-light); margin-bottom:8px;">+ Log Food / Meal for Selected Day</div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <input type="text" id="food-name-in" class="input-box" placeholder="Food Name (e.g. Rice &amp; Dal / Chicken Salad)" style="flex:2; min-width:160px;" />
+              <input type="number" id="food-kcal-in" class="input-box" placeholder="Calories (kcal)" style="width:130px;" min="0" />
+              <input type="number" id="food-prot-in" class="input-box" placeholder="Protein (g)" style="width:115px;" min="0" />
+              <button class="btn btn-sm btn-green" id="add-food-btn">+ Log Meal</button>
+            </div>
+          </div>
+
+          <!-- Today's Editable Food Log List -->
+          <div>
+            <div class="label-text">Today's Food Log (Click any meal name, calories, or protein to edit inline):</div>
+            <div id="food-log-list-wrap"></div>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+    <!-- ======================================================================
+         8. FOOTER CREDITS
+         ====================================================================== -->
+    <footer class="app-footer">
+      <div style="font-family:var(--font-head); font-size:0.95rem; margin-bottom:4px;">
+        ⚡ <strong>Made by Krishna</strong> ⚡
+      </div>
+      <div>
+        Holographic "System" UI design &amp; crystal-blue aesthetic inspired by <strong>Solo Leveling</strong> (created by Chugong / D&amp;C Media).
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ========================================================================
+       7. HISTORY & INTERACTIVE GRAPHS MODAL
+       ======================================================================== -->
+  <div class="modal-overlay" id="history-modal">
+    <div class="modal-box">
+      <div class="section-header">
+        <h2 class="section-title">📊 Progress History &amp; Interactive Graphs</h2>
+        <button class="btn btn-sm btn-soft" id="close-history-btn">✕ Close</button>
+      </div>
+
+      <!-- Graph Metric Switcher & Range Selector -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+        <div class="chart-tabs" style="margin-bottom:0;">
+          <button class="btn btn-sm" data-chart="calories">🥗 Calories vs Goal</button>
+          <button class="btn btn-sm btn-soft" data-chart="water">💧 Water Intake</button>
+          <button class="btn btn-sm btn-soft" data-chart="running">🏃 Running (km) &amp; Fitness</button>
+          <button class="btn btn-sm btn-soft" data-chart="weight">⚖ Weight &amp; BMI History</button>
+        </div>
+
+        <select id="chart-days-select" class="select-box" style="width:auto; padding:6px 12px;">
+          <option value="7">Last 7 Days</option>
+          <option value="14">Last 14 Days</option>
+        </select>
+      </div>
+
+      <!-- HTML5 Canvas Interactive Graph -->
+      <div class="chart-canvas-wrap">
+        <canvas id="history-chart-canvas"></canvas>
+      </div>
+
+      <!-- Day-by-Day Recorded History List -->
+      <div class="label-text" style="margin-bottom:8px;">📅 Recorded Days History (Click "View / Edit Day" to load that date):</div>
+      <div class="history-table-list" id="history-list-container"></div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       CONFIRMATION MODAL (REPLACES BROWSER ALERT / CONFIRM)
+       ======================================================================== -->
+  <div class="modal-overlay" id="confirm-modal">
+    <div class="modal-box" style="max-width:440px;">
+      <div class="section-header">
+        <h3 class="section-title" id="confirm-modal-title">[ ! ] System Confirmation</h3>
+      </div>
+      <p id="confirm-modal-text" style="color:var(--text-soft); margin-bottom:18px; font-size:1rem;"></p>
+      <div style="display:flex; justify-content:flex-end; gap:10px;">
+        <button class="btn btn-sm btn-soft" id="confirm-cancel-btn">Cancel</button>
+        <button class="btn btn-sm btn-red" id="confirm-ok-btn">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       APPLICATION JAVASCRIPT ENGINE
+       ======================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // Privacy-first storage key (starts with blank personal details)
+      const STORAGE_KEY = 'SOLO_SYSTEM_TRACKER_PRIVACY_V3';
+
+      // Helper: Format local date as YYYY-MM-DD
+      function getTodayDateString() {
+        const d = new Date();
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
+
+      // Helper: Add or subtract days from YYYY-MM-DD
+      function shiftDateString(dateStr, deltaDays) {
+        const parts = dateStr.split('-').map(Number);
+        const dt = new Date(parts[0], parts[1] - 1, parts[2]);
+        dt.setDate(dt.getDate() + deltaDays);
+        const y = dt.getFullYear();
+        const m = String(dt.getMonth() + 1).padStart(2, '0');
+        const d = String(dt.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+      }
+
+      // Default Exercises Template
+      function getDefaultQuestTemplates() {
+        return [
+          { id: 'ex_run', name: 'Running', target: 3.0, unit: 'km', step: 0.5 },
+          { id: 'ex_push', name: 'Push-ups', target: 40, unit: 'reps', step: 10 },
+          { id: 'ex_sit', name: 'Sit-ups', target: 40, unit: 'reps', step: 10 },
+          { id: 'ex_squat', name: 'Squats', target: 40, unit: 'reps', step: 10 }
+        ];
+      }
+
+      // Default Saved Diet Plan Presets
+      function getDefaultDietPresets() {
+        return [
+          { id: 'pr_1', name: 'Oats & Eggs Breakfast', kcal: 420, protein: 26 },
+          { id: 'pr_2', name: 'Chicken & Rice Bowl', kcal: 540, protein: 42 },
+          { id: 'pr_3', name: 'Dal, Paneer & 2 Roti', kcal: 460, protein: 22 },
+          { id: 'pr_4', name: 'Protein Shake', kcal: 160, protein: 28 },
+          { id: 'pr_5', name: 'Fruit & Nuts Snack', kcal: 240, protein: 7 }
+        ];
+      }
+
+      // Initial Complete State — ALL PERSONAL FIELDS START BLANK FOR PRIVACY
+      function getDefaultState() {
+        return {
+          profile: {
+            name: '',
+            heightCm: '',
+            weightKg: '',
+            age: '',
+            goal: 'maintain',
+            dailyCalorieGoal: 2000,
+            dailyProteinGoal: 120,
+            dailyWaterGoalMl: 2500
+          },
+          progression: {
+            level: 1,
+            xp: 0,
+            sfxEnabled: true
+          },
+          questTemplates: getDefaultQuestTemplates(),
+          dietPresets: getDefaultDietPresets(),
+          days: {} // Keyed by 'YYYY-MM-DD'
+        };
+      }
+
+      let state = loadState();
+      let activeDate = getTodayDateString();
+      let activeChartType = 'calories';
+      let lastKnownDateStr = getTodayDateString();
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return getDefaultState();
+          const parsed = JSON.parse(raw);
+          const def = getDefaultState();
+          return {
+            profile: { ...def.profile, ...(parsed.profile || {}) },
+            progression: { ...def.progression, ...(parsed.progression || {}) },
+            questTemplates: Array.isArray(parsed.questTemplates) && parsed.questTemplates.length
+              ? parsed.questTemplates
+              : def.questTemplates,
+            dietPresets: Array.isArray(parsed.dietPresets) ? parsed.dietPresets : def.dietPresets,
+            days: parsed.days && typeof parsed.days === 'object' ? parsed.days : {}
+          };
+        } catch (e) {
+          console.error('Error loading state:', e);
+          return getDefaultState();
+        }
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (e) {
+          console.error('Error saving state:', e);
+        }
+      }
+
+      // Ensure a day record exists for `dateStr`
+      function getDayRecord(dateStr) {
+        if (!state.days[dateStr]) {
+          state.days[dateStr] = {
+            waterMl: 0,
+            waterGoalMl: state.profile.dailyWaterGoalMl || 2500,
+            calorieGoal: state.profile.dailyCalorieGoal || 2000,
+            proteinGoal: state.profile.dailyProteinGoal || 120,
+            weightKg: state.profile.weightKg ? Number(state.profile.weightKg) : '',
+            note: '',
+            quests: state.questTemplates.map((t) => ({
+              id: t.id,
+              name: t.name,
+              current: 0,
+              target: t.target,
+              unit: t.unit,
+              step: t.step || (t.unit === 'km' ? 0.5 : 5),
+              rewarded: false
+            })),
+            meals: []
+          };
+        }
+        return state.days[dateStr];
+      }
+
+      // Toast helper
+      function showToast(msg) {
+        const wrap = document.getElementById('toast-wrap');
+        const el = document.createElement('div');
+        el.className = 'sys-toast';
+        el.textContent = `⚡ ${msg}`;
+        wrap.appendChild(el);
+        setTimeout(() => {
+          el.style.opacity = '0';
+          el.style.transition = 'opacity 0.25s';
+          setTimeout(() => el.remove(), 260);
+        }, 2800);
+      }
+
+      // Synthesized Crystal System Sound Effects (Web Audio API — zero external files)
+      let audioCtx = null;
+      function playSfx(type) {
+        if (state.progression.sfxEnabled === false) return;
+        try {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContextClass) return;
+          if (!audioCtx) audioCtx = new AudioContextClass();
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+
+          const now = audioCtx.currentTime;
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          if (type === 'levelup') {
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(523.25, now);
+            osc.frequency.setValueAtTime(659.25, now + 0.08);
+            osc.frequency.setValueAtTime(783.99, now + 0.16);
+            osc.frequency.setValueAtTime(1046.5, now + 0.24);
+            gain.gain.setValueAtTime(0.12, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.48);
+            osc.start(now);
+            osc.stop(now + 0.48);
+          } else if (type === 'quest') {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(587.33, now);
+            osc.frequency.exponentialRampToValueAtTime(880, now + 0.18);
+            gain.gain.setValueAtTime(0.1, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+            osc.start(now);
+            osc.stop(now + 0.22);
+          } else {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(720, now);
+            osc.frequency.exponentialRampToValueAtTime(960, now + 0.07);
+            gain.gain.setValueAtTime(0.06, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+            osc.start(now);
+            osc.stop(now + 0.09);
+          }
+        } catch (err) {
+          // Ignore audio context restrictions if user hasn't interacted yet
+        }
+      }
+
+      // Custom Confirmation Modal
+      function openConfirmModal(title, text, onConfirm) {
+        const modal = document.getElementById('confirm-modal');
+        document.getElementById('confirm-modal-title').textContent = title;
+        document.getElementById('confirm-modal-text').textContent = text;
+        modal.classList.add('open');
+
+        const okBtn = document.getElementById('confirm-ok-btn');
+        const cancelBtn = document.getElementById('confirm-cancel-btn');
+
+        const cleanup = () => {
+          modal.classList.remove('open');
+          okBtn.onclick = null;
+          cancelBtn.onclick = null;
+        };
+
+        okBtn.onclick = () => {
+          cleanup();
+          onConfirm();
+        };
+        cancelBtn.onclick = cleanup;
+      }
+
+      // Award XP & Level Up
+      function addXp(amount, reason) {
+        state.progression.xp += amount;
+        let needed = 100 + (state.progression.level - 1) * 35;
+        let leveled = false;
+        while (state.progression.xp >= needed) {
+          state.progression.xp -= needed;
+          state.progression.level += 1;
+          leveled = true;
+          needed = 100 + (state.progression.level - 1) * 35;
+        }
+        saveState();
+        if (leveled) {
+          playSfx('levelup');
+          showToast(`LEVEL UP! You reached Level ${state.progression.level}!`);
+        } else if (reason) {
+          playSfx('quest');
+          showToast(`+${amount} XP (${reason})`);
+        }
+      }
+
+      // Calculate Daily System Sync % (Water + Quests + Diet)
+      function calculateDailySyncPct(dayRec) {
+        const waterGoal = Math.max(500, Number(dayRec.waterGoalMl) || 2500);
+        const waterRatio = Math.min(1, (Number(dayRec.waterMl) || 0) / waterGoal);
+
+        const totalQ = dayRec.quests.length;
+        const questRatio = totalQ > 0
+          ? dayRec.quests.reduce((acc, q) => acc + Math.min(1, (Number(q.current) || 0) / Math.max(0.1, Number(q.target) || 1)), 0) / totalQ
+          : 0;
+
+        const calGoal = Math.max(500, Number(dayRec.calorieGoal) || 2000);
+        const consumedKcal = dayRec.meals.reduce((s, m) => s + (Number(m.kcal) || 0), 0);
+        const calRatio = Math.min(1, consumedKcal / calGoal);
+
+        return Math.round(((waterRatio + questRatio + calRatio) / 3) * 100);
+      }
+
+      // Calculate Streak of consecutive days with activity
+      function calculateStreak() {
+        let streak = 0;
+        let cursor = getTodayDateString();
+        while (true) {
+          const rec = state.days[cursor];
+          const hasActivity = rec && (
+            rec.waterMl > 0 ||
+            rec.meals.length > 0 ||
+            rec.quests.some((q) => Number(q.current) > 0)
+          );
+          if (hasActivity) {
+            streak += 1;
+            cursor = shiftDateString(cursor, -1);
+          } else {
+            break;
+          }
+        }
+        return streak;
+      }
+
+      // ======================================================================
+      // BMI & DAILY RECOMMENDATIONS ENGINE (RESPECTS BLANK INPUTS)
+      // ======================================================================
+      function computeBmiAndRecommendations() {
+        const p = state.profile;
+        const rawHeight = parseFloat(p.heightCm);
+        const rawWeight = parseFloat(p.weightKg);
+
+        if (!rawHeight || !rawWeight || rawHeight < 80 || rawWeight < 20) {
+          return { hasValidStats: false };
+        }
+
+        const hMeters = rawHeight / 100;
+        const wKg = rawWeight;
+        const age = parseFloat(p.age) > 0 ? parseFloat(p.age) : 25;
+
+        const bmi = wKg / (hMeters * hMeters);
+        let category = 'Normal';
+        let color = '#00f59b';
+
+        if (bmi < 18.5) {
+          category = 'Underweight';
+          color = '#38bdf8';
+        } else if (bmi < 25) {
+          category = 'Normal (Healthy)';
+          color = '#00f59b';
+        } else if (bmi < 30) {
+          category = 'Overweight';
+          color = '#ffcc33';
+        } else {
+          category = 'Obese';
+          color = '#ff3b6b';
+        }
+
+        const minHealthyKg = Math.round(18.5 * hMeters * hMeters);
+        const maxHealthyKg = Math.round(24.9 * hMeters * hMeters);
+
+        const bmr = (10 * wKg) + (6.25 * rawHeight) - (5 * age) + 5;
+        let recKcal = Math.round(bmr * 1.5);
+        if (p.goal === 'lose') recKcal = Math.max(1300, recKcal - 400);
+        if (p.goal === 'gain') recKcal = recKcal + 350;
+        recKcal = Math.round(recKcal / 50) * 50;
+
+        const recProtein = Math.round(wKg * (p.goal === 'gain' ? 2.0 : 1.7));
+
+        let recRunKm = 4.0;
+        let recReps = 50;
+        if (bmi < 18.5) {
+          recRunKm = 2.5;
+          recReps = 35;
+        } else if (bmi < 25) {
+          recRunKm = p.goal === 'lose' ? 5.0 : (p.goal === 'gain' ? 3.0 : 4.0);
+          recReps = 50;
+        } else if (bmi < 30) {
+          recRunKm = 4.5;
+          recReps = 40;
+        } else {
+          recRunKm = 3.5;
+          recReps = 30;
+        }
+
+        const recWaterMl = Math.round((wKg * 38) / 100) * 100;
+
+        return {
+          hasValidStats: true,
+          bmi,
+          category,
+          color,
+          minHealthyKg,
+          maxHealthyKg,
+          recKcal,
+          recProtein,
+          recRunKm,
+          recReps,
+          recWaterMl
+        };
+      }
+
+      // ======================================================================
+      // RENDER ALL UI SECTIONS
+      // ======================================================================
+      function renderAll() {
+        const dayRec = getDayRecord(activeDate);
+        const bio = computeBmiAndRecommendations();
+
+        renderHeaderAndDayBar();
+        renderBmiSection(bio);
+        renderWaterSection(dayRec);
+        renderCheckinSection(dayRec);
+        renderFitnessSection(dayRec);
+        renderDietSection(dayRec);
+      }
+
+      function renderHeaderAndDayBar() {
+        const lvl = state.progression.level;
+        const xp = state.progression.xp;
+        const needed = 100 + (lvl - 1) * 35;
+        const pct = Math.min(100, Math.round((xp / needed) * 100));
+
+        const cleanName = (state.profile.name || '').trim();
+        document.getElementById('header-lvl-text').textContent = cleanName
+          ? `LEVEL ${lvl} // ${cleanName.toUpperCase()}`
+          : `LEVEL ${lvl}`;
+        document.getElementById('header-xp-fill').style.width = `${pct}%`;
+        document.getElementById('header-xp-text').textContent = `${xp} / ${needed} XP`;
+
+        const sfxBtn = document.getElementById('sfx-toggle-btn');
+        if (sfxBtn) {
+          const isOn = state.progression.sfxEnabled !== false;
+          sfxBtn.textContent = isOn ? '🔊 SFX: ON' : '🔇 SFX: OFF';
+        }
+
+        // Day Controller
+        const picker = document.getElementById('active-date-picker');
+        if (picker.value !== activeDate) picker.value = activeDate;
+
+        const todayStr = getTodayDateString();
+        const badge = document.getElementById('day-status-badge');
+        const jumpBtn = document.getElementById('jump-today-btn');
+
+        if (activeDate === todayStr) {
+          badge.textContent = 'TODAY';
+          badge.classList.remove('other-day');
+          jumpBtn.style.display = 'none';
+          document.getElementById('checkin-date-badge').textContent = 'Today';
+        } else {
+          const yesterdayStr = shiftDateString(todayStr, -1);
+          badge.textContent = activeDate === yesterdayStr ? 'YESTERDAY' : (activeDate < todayStr ? 'PAST LOG' : 'FUTURE PLAN');
+          badge.classList.add('other-day');
+          jumpBtn.style.display = 'inline-flex';
+          document.getElementById('checkin-date-badge').textContent = activeDate;
+        }
+
+        const dayRec = getDayRecord(activeDate);
+        const syncPct = calculateDailySyncPct(dayRec);
+        const syncEl = document.getElementById('sys-sync-display');
+        if (syncEl) syncEl.textContent = `⚡ System Sync: ${syncPct}%`;
+
+        const streak = calculateStreak();
+        document.getElementById('streak-display').textContent = `🔥 Streak: ${streak} ${streak === 1 ? 'Day' : 'Days'}`;
+      }
+
+      function renderBmiSection(bio) {
+        const activeEl = document.activeElement;
+        const syncVal = (id, val) => {
+          const el = document.getElementById(id);
+          if (el && activeEl !== el) el.value = val ?? '';
+        };
+
+        syncVal('prof-name', state.profile.name);
+        syncVal('prof-height', state.profile.heightCm);
+        syncVal('prof-weight', state.profile.weightKg);
+        syncVal('prof-age', state.profile.age);
+        syncVal('prof-goal', state.profile.goal || 'maintain');
+
+        const emptyPrompt = document.getElementById('bmi-empty-prompt');
+        const calcBox = document.getElementById('bmi-calculated-box');
+
+        if (!bio.hasValidStats) {
+          emptyPrompt.style.display = 'block';
+          calcBox.style.display = 'none';
+          return;
+        }
+
+        emptyPrompt.style.display = 'none';
+        calcBox.style.display = 'block';
+
+        document.getElementById('bmi-value-text').textContent = bio.bmi.toFixed(1);
+        const catBadge = document.getElementById('bmi-category-badge');
+        catBadge.textContent = bio.category;
+        catBadge.style.color = bio.color;
+
+        document.getElementById('bmi-ideal-weight').textContent =
+          `Healthy Range: ${bio.minHealthyKg} - ${bio.maxHealthyKg} kg`;
+
+        document.getElementById('rec-kcal-text').textContent = `${bio.recKcal} kcal`;
+        document.getElementById('rec-run-text').textContent = `${bio.recRunKm.toFixed(1)} km`;
+        document.getElementById('rec-water-text').textContent = `${bio.recWaterMl} ml`;
+      }
+
+      function renderWaterSection(dayRec) {
+        const goalMl = Math.max(500, Number(dayRec.waterGoalMl) || 2500);
+        const drankMl = Math.max(0, Number(dayRec.waterMl) || 0);
+        const pct = Math.min(100, Math.round((drankMl / goalMl) * 100));
+
+        const goalInput = document.getElementById('water-goal-input');
+        if (document.activeElement !== goalInput) goalInput.value = goalMl;
+
+        document.getElementById('water-liters-badge').textContent =
+          `${(drankMl / 1000).toFixed(2)} L / ${(goalMl / 1000).toFixed(2)} L`;
+        document.getElementById('water-tank-fill').style.height = `${pct}%`;
+        document.getElementById('water-tank-pct').textContent = `${pct}%`;
+        document.getElementById('water-progress-label').textContent = `${drankMl} / ${goalMl} ml`;
+        document.getElementById('water-bar-fill').style.width = `${pct}%`;
+
+        const totalCups = Math.max(4, Math.min(16, Math.ceil(goalMl / 250)));
+        const filledCups = Math.floor(drankMl / 250);
+        const cupsWrap = document.getElementById('water-cups-container');
+        cupsWrap.innerHTML = '';
+
+        for (let i = 1; i <= totalCups; i++) {
+          const cup = document.createElement('button');
+          cup.type = 'button';
+          cup.className = `water-cup ${i <= filledCups ? 'filled' : ''}`;
+          cup.title = `Set water to ${i * 250} ml`;
+          cup.textContent = '💧';
+          cup.addEventListener('click', () => {
+            dayRec.waterMl = (filledCups === i) ? (i - 1) * 250 : i * 250;
+            saveState();
+            renderWaterSection(dayRec);
+            renderHeaderAndDayBar();
+          });
+          cupsWrap.appendChild(cup);
+        }
+      }
+
+      function renderCheckinSection(dayRec) {
+        const wIn = document.getElementById('day-weight-input');
+        const nIn = document.getElementById('day-note-input');
+        if (document.activeElement !== wIn) {
+          wIn.value = dayRec.weightKg !== undefined && dayRec.weightKg !== ''
+            ? dayRec.weightKg
+            : (state.profile.weightKg || '');
+        }
+        if (document.activeElement !== nIn) nIn.value = dayRec.note || '';
+      }
+
+      function renderFitnessSection(dayRec) {
+        const listWrap = document.getElementById('quests-list-wrap');
+        listWrap.innerHTML = '';
+
+        let completedCount = 0;
+        dayRec.quests.forEach((q) => {
+          const target = Math.max(0.1, Number(q.target) || 1);
+          const current = Math.max(0, Number(q.current) || 0);
+          const isDone = current >= target;
+          if (isDone) completedCount += 1;
+          const pct = Math.min(100, Math.round((current / target) * 100));
+
+          const item = document.createElement('div');
+          item.className = `quest-item ${isDone ? 'done' : ''}`;
+          item.innerHTML = `
+            <div class="quest-header-row">
+              <div class="quest-left-title">
+                <button type="button" class="check-btn" data-q-action="toggle" data-id="${q.id}" title="Mark 100% Completed">✓</button>
+                <input type="text" class="quest-name-input" value="${escapeHtml(q.name)}" data-q-edit="name" data-id="${q.id}" title="Click to rename exercise" />
+              </div>
+              <button type="button" class="btn btn-sm btn-red" data-q-action="delete" data-id="${q.id}" title="Delete Exercise">✕</button>
+            </div>
+
+            <div class="progress-track" style="height:8px;">
+              <div class="progress-fill ${isDone ? 'green' : ''}" style="width:${pct}%;"></div>
+            </div>
+
+            <div class="quest-controls-row">
+              <div class="quest-numbers-group">
+                <span style="color:var(--text-soft);">Done:</span>
+                <input type="number" class="input-box input-inline" value="${current}" step="${q.step || 1}" min="0" data-q-edit="current" data-id="${q.id}" />
+                <span>/ Target:</span>
+                <input type="number" class="input-box input-inline" value="${target}" step="${q.step || 1}" min="0.5" data-q-edit="target" data-id="${q.id}" />
+                <span style="color:var(--cyan-light);">${escapeHtml(q.unit)}</span>
+              </div>
+
+              <div style="display:flex; gap:6px;">
+                <button type="button" class="btn btn-sm btn-soft" data-q-action="dec" data-id="${q.id}">-${q.step || 1}</button>
+                <button type="button" class="btn btn-sm" data-q-action="inc" data-id="${q.id}">+${q.step || 1} ${escapeHtml(q.unit)}</button>
+              </div>
+            </div>
+          `;
+          listWrap.appendChild(item);
+        });
+
+        const total = dayRec.quests.length;
+        const totalPct = total > 0 ? Math.round((completedCount / total) * 100) : 0;
+        document.getElementById('quests-summary-badge').textContent = `${completedCount} / ${total} Completed`;
+        document.getElementById('quests-pct-label').textContent = `${totalPct}%`;
+        document.getElementById('quests-bar-fill').style.width = `${totalPct}%`;
+      }
+
+      function renderDietSection(dayRec) {
+        const goalKcal = Math.max(500, Number(dayRec.calorieGoal) || 2000);
+        const goalProt = Math.max(20, Number(dayRec.proteinGoal) || Number(state.profile.dailyProteinGoal) || 120);
+
+        const goalInput = document.getElementById('diet-goal-input');
+        if (document.activeElement !== goalInput) goalInput.value = goalKcal;
+
+        const protGoalInput = document.getElementById('protein-goal-input');
+        if (document.activeElement !== protGoalInput) protGoalInput.value = goalProt;
+
+        let consumedKcal = 0;
+        let consumedProt = 0;
+        dayRec.meals.forEach((m) => {
+          consumedKcal += Number(m.kcal) || 0;
+          consumedProt += Number(m.protein) || 0;
+        });
+
+        const diff = goalKcal - consumedKcal;
+        const pct = Math.min(100, Math.round((consumedKcal / goalKcal) * 100));
+        const protPct = Math.min(100, Math.round((consumedProt / goalProt) * 100));
+
+        document.getElementById('diet-remaining-badge').textContent =
+          diff >= 0 ? `${diff} kcal remaining` : `${Math.abs(diff)} kcal over goal`;
+
+        document.getElementById('diet-progress-label').textContent =
+          `${consumedKcal} / ${goalKcal} kcal`;
+
+        const bar = document.getElementById('diet-bar-fill');
+        bar.style.width = `${pct}%`;
+        bar.className = 'progress-fill ' + (consumedKcal > goalKcal * 1.08 ? 'red' : (consumedKcal >= goalKcal * 0.85 ? 'green' : ''));
+
+        document.getElementById('protein-progress-label').textContent =
+          `${consumedProt} / ${goalProt} g`;
+        document.getElementById('protein-bar-fill').style.width = `${protPct}%`;
+
+        const presetsWrap = document.getElementById('diet-presets-wrap');
+        presetsWrap.innerHTML = '';
+        state.dietPresets.forEach((pr) => {
+          const pill = document.createElement('div');
+          pill.className = 'preset-pill';
+          pill.innerHTML = `
+            <button type="button" class="preset-add-trigger" data-pr-add="${pr.id}" title="Click to add to Today's Food Log">
+              <span>+ ${escapeHtml(pr.name)}</span>
+              <span style="font-family:var(--font-mono); color:var(--cyan-light);">(${pr.kcal} kcal)</span>
+            </button>
+            <button type="button" class="preset-del-btn" data-pr-del="${pr.id}" title="Remove Preset">✕</button>
+          `;
+          presetsWrap.appendChild(pill);
+        });
+
+        const foodWrap = document.getElementById('food-log-list-wrap');
+        foodWrap.innerHTML = '';
+        if (dayRec.meals.length === 0) {
+          foodWrap.innerHTML = `
+            <div style="padding:14px; text-align:center; color:var(--text-dim); border:1px dashed var(--border-soft); border-radius:var(--radius-sm);">
+              No meals logged for this day yet. Click a Saved Diet Plan item above or log a meal below!
+            </div>
+          `;
+        } else {
+          dayRec.meals.forEach((m) => {
+            const row = document.createElement('div');
+            row.className = 'food-log-item';
+            row.innerHTML = `
+              <input type="text" class="quest-name-input" value="${escapeHtml(m.name)}" data-m-edit="name" data-id="${m.id}" style="flex:1; min-width:140px;" title="Edit food name" />
+              <div style="display:flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:0.88rem;">
+                <input type="number" class="input-box input-inline" value="${m.kcal}" min="0" data-m-edit="kcal" data-id="${m.id}" title="Edit calories" />
+                <span>kcal</span>
+                <input type="number" class="input-box input-inline" value="${m.protein || 0}" min="0" data-m-edit="protein" data-id="${m.id}" style="width:64px;" title="Edit protein (g)" />
+                <span>g P</span>
+                <button type="button" class="btn btn-sm btn-red" data-m-del="${m.id}" title="Delete Meal">✕</button>
+              </div>
+            `;
+            foodWrap.appendChild(row);
+          });
+        }
+      }
+
+      // ======================================================================
+      // AUTOMATIC SYSTEM CLOCK & MIDNIGHT RESET WATCHER
+      // ======================================================================
+      function sendSystemNotification(title, message) {
+        showToast(message);
+        if ('Notification' in window && Notification.permission === 'granted') {
+          try { new Notification(title, { body: message, icon: 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#030812"/><text x="32" y="44" text-anchor="middle" font-size="42" fill="#00d4ff">!</text></svg>') }); } catch (_) {}
+        }
+      }
+
+      async function requestNotificationPermission() {
+        if (!('Notification' in window)) {
+          showToast('Browser notifications are not supported here; in-page alerts will still work.');
+          return;
+        }
+        if (Notification.permission === 'default') {
+          try {
+            const permission = await Notification.requestPermission();
+            showToast(permission === 'granted' ? 'System notifications enabled.' : 'Notifications not enabled. Keep FitCore open to see in-page alerts.');
+          } catch (_) {
+            showToast('Could not enable notifications in this browser.');
+          }
+        } else {
+          showToast(Notification.permission === 'granted' ? 'System notifications are already enabled.' : 'Allow notifications for this site in your browser settings.');
+        }
+      }
+
+      function applyMissedQuestPenalty(dateStr) {
+        const dayRec = state.days[dateStr];
+        if (!dayRec || dayRec.missedPenaltyApplied) return;
+        const missed = (dayRec.quests || []).filter(q =>
+          Number(q.current || 0) < Number(q.target || 1) && !q.penaltyExempt
+        );
+        dayRec.missedPenaltyApplied = true;
+        if (!missed.length) {
+          saveState();
+          return;
+        }
+        const penalty = missed.length * 10;
+        // Deduct from current level progress without allowing negative XP.
+        state.progression.xp = Math.max(0, Number(state.progression.xp || 0) - penalty);
+        saveState();
+        sendSystemNotification('FitCore — Quest Penalty', `${missed.length} unfinished daily quest(s): -${penalty} XP. Complete today's quests to avoid tomorrow's penalty.`);
+      }
+
+      function updateSystemClockAndCheckMidnight() {
+        const now = new Date();
+        const currentDateStr = getTodayDateString();
+
+        // Format Date & Time for System HUD display
+        const clockEl = document.getElementById('system-clock-display');
+        if (clockEl) {
+          const dateText = new Intl.DateTimeFormat(undefined, {
+            year: 'numeric', month: 'short', day: '2-digit'
+          }).format(now);
+          const timeText = new Intl.DateTimeFormat(undefined, {
+            hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+          }).format(now);
+          // textContent displays literal HTML entities such as &nbsp;; use plain text separators.
+          clockEl.textContent = `📅 ${dateText}  •  ⏰ ${timeText}`;
+        }
+
+        // Automatic 12:00 AM / New Day Detection
+        if (currentDateStr !== lastKnownDateStr) {
+          const finishedDate = lastKnownDateStr;
+          applyMissedQuestPenalty(finishedDate);
+          lastKnownDateStr = currentDateStr;
+          // If the user was viewing "Today" or had the old date active, auto-switch activeDate to the new day
+          if (activeDate === shiftDateString(currentDateStr, -1)) {
+            activeDate = currentDateStr;
+            renderAll();
+            sendSystemNotification('FitCore — New Daily Quest', 'Day reset at 12:00 AM. Your new daily quests are ready!');
+          }
+        }
+      }
+
+      // ======================================================================
+      // 7. INTERACTIVE HISTORY & GRAPHS ENGINE (HTML5 CANVAS)
+      // ======================================================================
+      function renderHistoryModal() {
+        drawHistoryChart();
+        renderHistoryDaysList();
+      }
+
+      function drawHistoryChart() {
+        const canvas = document.getElementById('history-chart-canvas');
+        if (!canvas) return;
+        const rect = canvas.parentElement.getBoundingClientRect();
+        canvas.width = Math.max(300, rect.width - 20);
+        canvas.height = Math.max(200, rect.height - 20);
+
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width;
+        const H = canvas.height;
+        ctx.clearRect(0, 0, W, H);
+
+        const numDays = parseInt(document.getElementById('chart-days-select').value, 10) || 7;
+        const labels = [];
+        const primaryData = [];
+        const targetData = [];
+
+        const todayStr = getTodayDateString();
+        const heightM = Math.max(1.0, (parseFloat(state.profile.heightCm) || 170) / 100);
+
+        for (let i = numDays - 1; i >= 0; i--) {
+          const dStr = shiftDateString(todayStr, -i);
+          const rec = state.days[dStr];
+          labels.push(dStr.slice(5));
+
+          if (activeChartType === 'calories') {
+            const c = rec ? rec.meals.reduce((s, m) => s + (Number(m.kcal) || 0), 0) : 0;
+            const g = rec ? (Number(rec.calorieGoal) || state.profile.dailyCalorieGoal) : state.profile.dailyCalorieGoal;
+            primaryData.push(c);
+            targetData.push(g);
+          } else if (activeChartType === 'water') {
+            const w = rec ? (Number(rec.waterMl) || 0) : 0;
+            const g = rec ? (Number(rec.waterGoalMl) || state.profile.dailyWaterGoalMl) : state.profile.dailyWaterGoalMl;
+            primaryData.push(w);
+            targetData.push(g);
+          } else if (activeChartType === 'running') {
+            let runKm = 0;
+            let runTarget = 3.0;
+            if (rec && rec.quests) {
+              const rq = rec.quests.find((q) => q.unit === 'km' || q.name.toLowerCase().includes('run'));
+              if (rq) {
+                runKm = Number(rq.current) || 0;
+                runTarget = Number(rq.target) || 3.0;
+              }
+            }
+            primaryData.push(runKm);
+            targetData.push(runTarget);
+          } else if (activeChartType === 'weight') {
+            const wKg = rec && rec.weightKg ? parseFloat(rec.weightKg) : (parseFloat(state.profile.weightKg) || 0);
+            const bmiVal = wKg > 0 ? Math.round((wKg / (heightM * heightM)) * 10) / 10 : 0;
+            primaryData.push(wKg);
+            targetData.push(bmiVal);
+          }
+        }
+
+        const padL = 48;
+        const padR = 20;
+        const padT = 28;
+        const padB = 34;
+        const plotW = W - padL - padR;
+        const plotH = H - padT - padB;
+
+        const nonZeroWeights = primaryData.filter((v) => v > 0);
+        const allVals = [...primaryData, ...(activeChartType === 'weight' ? [] : targetData), 1];
+        const maxVal = Math.max(...allVals) * 1.15;
+        const minVal = activeChartType === 'weight' && nonZeroWeights.length
+          ? Math.max(0, Math.min(...nonZeroWeights) - 5)
+          : 0;
+
+        ctx.strokeStyle = 'rgba(0, 212, 255, 0.14)';
+        ctx.fillStyle = '#9cc2e6';
+        ctx.font = '11px "Share Tech Mono", monospace';
+        ctx.lineWidth = 1;
+
+        for (let g = 0; g <= 4; g++) {
+          const y = padT + (plotH * g) / 4;
+          const val = maxVal - ((maxVal - minVal) * g) / 4;
+          ctx.beginPath();
+          ctx.moveTo(padL, y);
+          ctx.lineTo(W - padR, y);
+          ctx.stroke();
+          ctx.fillText(val.toFixed(activeChartType === 'running' ? 1 : 0), 6, y + 4);
+        }
+
+        const stepX = plotW / Math.max(1, numDays);
+        const barW = Math.min(34, stepX * 0.52);
+
+        primaryData.forEach((val, idx) => {
+          const cx = padL + idx * stepX + stepX / 2;
+          const ratio = val > 0 ? Math.max(0, (val - minVal) / Math.max(0.1, maxVal - minVal)) : 0;
+          const barH = ratio * plotH;
+          const y = padT + plotH - barH;
+
+          if (activeChartType !== 'weight') {
+            const grad = ctx.createLinearGradient(0, y, 0, padT + plotH);
+            grad.addColorStop(0, '#00d4ff');
+            grad.addColorStop(1, 'rgba(0, 119, 255, 0.25)');
+            ctx.fillStyle = grad;
+            ctx.fillRect(cx - barW / 2, y, barW, barH);
+            ctx.strokeStyle = '#80eaff';
+            ctx.strokeRect(cx - barW / 2, y, barW, barH);
+          }
+
+          ctx.fillStyle = '#ffffff';
+          ctx.textAlign = 'center';
+          if (val > 0) {
+            ctx.fillText(
+              activeChartType === 'running' || activeChartType === 'weight' ? val.toFixed(1) : Math.round(val),
+              cx,
+              Math.max(14, y - 6)
+            );
+          }
+
+          ctx.fillStyle = '#9cc2e6';
+          ctx.fillText(labels[idx], cx, H - 10);
+        });
+
+        ctx.beginPath();
+        ctx.strokeStyle = activeChartType === 'weight' ? '#00f59b' : '#ffcc33';
+        ctx.lineWidth = 2;
+        const lineArr = activeChartType === 'weight' ? primaryData : targetData;
+
+        let started = false;
+        lineArr.forEach((tVal, idx) => {
+          if (activeChartType === 'weight' && tVal <= 0) return;
+          const cx = padL + idx * stepX + stepX / 2;
+          const ratio = Math.max(0, (tVal - minVal) / Math.max(0.1, maxVal - minVal));
+          const y = padT + plotH - ratio * plotH;
+          if (!started) {
+            ctx.moveTo(cx, y);
+            started = true;
+          } else {
+            ctx.lineTo(cx, y);
+          }
+        });
+        ctx.stroke();
+        ctx.textAlign = 'left';
+      }
+
+      function renderHistoryDaysList() {
+        const container = document.getElementById('history-list-container');
+        container.innerHTML = '';
+
+        const sortedDates = Object.keys(state.days).sort((a, b) => b.localeCompare(a));
+        if (sortedDates.length === 0) {
+          container.innerHTML = `<div style="padding:12px; color:var(--text-dim);">No days recorded yet.</div>`;
+          return;
+        }
+
+        sortedDates.forEach((dStr) => {
+          const r = state.days[dStr];
+          const kcal = r.meals.reduce((s, m) => s + (Number(m.kcal) || 0), 0);
+          const doneQ = r.quests.filter((q) => Number(q.current) >= Number(q.target)).length;
+          const totalQ = r.quests.length;
+          const weightDisplay = r.weightKg ? `${r.weightKg} kg` : (state.profile.weightKg ? `${state.profile.weightKg} kg` : '-- kg');
+
+          const row = document.createElement('div');
+          row.className = 'history-day-row';
+          row.innerHTML = `
+            <div>
+              <strong style="font-family:var(--font-mono); color:var(--cyan-light); font-size:1rem;">${dStr}</strong>
+              ${r.note ? `<span style="font-size:0.85rem; color:var(--text-soft); margin-left:8px;">— "${escapeHtml(r.note)}"</span>` : ''}
+              <div style="font-size:0.85rem; color:var(--text-soft); margin-top:3px;">
+                🥗 ${kcal} / ${r.calorieGoal} kcal &nbsp;|&nbsp;
+                💧 ${r.waterMl} ml &nbsp;|&nbsp;
+                ⚔ Exercises: ${doneQ}/${totalQ} &nbsp;|&nbsp;
+                ⚖ ${weightDisplay}
+              </div>
+            </div>
+            <button type="button" class="btn btn-sm" data-jump-date="${dStr}">View / Edit Day</button>
+          `;
+          container.appendChild(row);
+        });
+      }
+
+      function escapeHtml(str) {
+        return String(str ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function syncDailyTargetsToBmi() {
+        const bio = computeBmiAndRecommendations();
+        if (!bio.hasValidStats) {
+          showToast('Please enter your Height (cm) and Weight (kg) in Your Profile first.');
+          document.getElementById('prof-height').focus();
+          return;
+        }
+        const dayRec = getDayRecord(activeDate);
+
+        state.profile.dailyCalorieGoal = bio.recKcal;
+        state.profile.dailyProteinGoal = bio.recProtein;
+        state.profile.dailyWaterGoalMl = bio.recWaterMl;
+
+        dayRec.calorieGoal = bio.recKcal;
+        dayRec.proteinGoal = bio.recProtein;
+        dayRec.waterGoalMl = bio.recWaterMl;
+
+        dayRec.quests.forEach((q) => {
+          if (q.unit === 'km' || q.name.toLowerCase().includes('run')) {
+            q.target = bio.recRunKm;
+          } else if (q.unit === 'reps') {
+            q.target = bio.recReps;
+          }
+        });
+        state.questTemplates.forEach((t) => {
+          if (t.unit === 'km' || t.name.toLowerCase().includes('run')) {
+            t.target = bio.recRunKm;
+          } else if (t.unit === 'reps') {
+            t.target = bio.recReps;
+          }
+        });
+
+        saveState();
+        renderAll();
+        showToast(`Synced to BMI: ${bio.recKcal} kcal, ${bio.recProtein}g protein, ${bio.recRunKm} km run, ${bio.recWaterMl} ml water!`);
+      }
+
+      // ======================================================================
+      // EVENT BINDINGS
+      // ======================================================================
+      function bindEvents() {
+        const notificationsButton = document.getElementById('notifications-toggle-btn');
+        if (notificationsButton) notificationsButton.addEventListener('click', requestNotificationPermission);
+
+        document.getElementById('prev-day-btn').addEventListener('click', () => {
+          activeDate = shiftDateString(activeDate, -1);
+          renderAll();
+        });
+
+        document.getElementById('next-day-btn').addEventListener('click', () => {
+          activeDate = shiftDateString(activeDate, 1);
+          renderAll();
+        });
+
+        document.getElementById('active-date-picker').addEventListener('change', (e) => {
+          if (e.target.value) {
+            activeDate = e.target.value;
+            renderAll();
+          }
+        });
+
+        document.getElementById('jump-today-btn').addEventListener('click', () => {
+          activeDate = getTodayDateString();
+          renderAll();
+        });
+
+        document.getElementById('reset-day-btn').addEventListener('click', () => {
+          openConfirmModal(
+            'Reset Selected Day?',
+            `Are you sure you want to clear all water, meals, and fitness progress for ${activeDate}?`,
+            () => {
+              delete state.days[activeDate];
+              getDayRecord(activeDate);
+              saveState();
+              renderAll();
+              showToast(`Reset ${activeDate} back to 0.`);
+            }
+          );
+        });
+
+        document.getElementById('privacy-reset-btn').addEventListener('click', () => {
+          openConfirmModal(
+            'Clear Profile & Privacy Reset?',
+            'This will permanently erase your personal details, BMI profile, and all recorded daily logs stored in this browser. Do you want to continue?',
+            () => {
+              localStorage.removeItem(STORAGE_KEY);
+              state = getDefaultState();
+              activeDate = getTodayDateString();
+              saveState();
+              renderAll();
+              showToast('All personal details and local history have been cleared.');
+            }
+          );
+        });
+
+        const bindProf = (id, key, isNum) => {
+          document.getElementById(id).addEventListener('input', (e) => {
+            const raw = e.target.value;
+            if (isNum) {
+              if (raw === '') {
+                state.profile[key] = '';
+              } else {
+                const parsed = parseFloat(raw);
+                if (!isNaN(parsed) && parsed > 0) {
+                  state.profile[key] = parsed;
+                }
+              }
+            } else {
+              state.profile[key] = raw;
+            }
+            if (key === 'weightKg') {
+              getDayRecord(activeDate).weightKg = state.profile.weightKg;
+            }
+            saveState();
+            renderAll();
+          });
+        };
+
+        bindProf('prof-name', 'name', false);
+        bindProf('prof-height', 'heightCm', true);
+        bindProf('prof-weight', 'weightKg', true);
+        bindProf('prof-age', 'age', true);
+        bindProf('prof-goal', 'goal', false);
+
+        document.getElementById('apply-bmi-targets-btn').addEventListener('click', syncDailyTargetsToBmi);
+        document.getElementById('sync-fitness-bmi-btn').addEventListener('click', syncDailyTargetsToBmi);
+
+        document.getElementById('water-goal-input').addEventListener('input', (e) => {
+          const val = parseInt(e.target.value, 10);
+          if (val >= 500) {
+            const dayRec = getDayRecord(activeDate);
+            dayRec.waterGoalMl = val;
+            state.profile.dailyWaterGoalMl = val;
+            saveState();
+            renderWaterSection(dayRec);
+          }
+        });
+
+        const modifyWater = (delta) => {
+          const dayRec = getDayRecord(activeDate);
+          dayRec.waterMl = Math.max(0, (Number(dayRec.waterMl) || 0) + delta);
+          if (delta > 0) addXp(5, 'Hydration');
+          saveState();
+          renderWaterSection(dayRec);
+          renderHeaderAndDayBar();
+        };
+
+        document.getElementById('water-add-250').addEventListener('click', () => modifyWater(250));
+        document.getElementById('water-add-500').addEventListener('click', () => modifyWater(500));
+        document.getElementById('water-sub-250').addEventListener('click', () => modifyWater(-250));
+
+        document.getElementById('water-add-custom-btn').addEventListener('click', () => {
+          const inp = document.getElementById('water-custom-input');
+          const val = parseInt(inp.value, 10);
+          if (val > 0) {
+            modifyWater(val);
+            inp.value = '';
+          }
+        });
+
+        document.getElementById('day-weight-input').addEventListener('input', (e) => {
+          const raw = e.target.value;
+          if (raw === '') {
+            getDayRecord(activeDate).weightKg = '';
+            saveState();
+            return;
+          }
+          const v = parseFloat(raw);
+          if (v >= 20) {
+            getDayRecord(activeDate).weightKg = v;
+            if (activeDate === getTodayDateString()) state.profile.weightKg = v;
+            saveState();
+            renderBmiSection(computeBmiAndRecommendations());
+          }
+        });
+
+        document.getElementById('day-note-input').addEventListener('input', (e) => {
+          getDayRecord(activeDate).note = e.target.value;
+          saveState();
+        });
+
+        document.getElementById('quests-list-wrap').addEventListener('click', (e) => {
+          const btn = e.target.closest('button[data-q-action]');
+          if (!btn) return;
+          const action = btn.getAttribute('data-q-action');
+          const id = btn.getAttribute('data-id');
+          const dayRec = getDayRecord(activeDate);
+          const q = dayRec.quests.find((x) => x.id === id);
+          if (!q) return;
+
+          if (action === 'toggle') {
+            q.current = Number(q.current) >= Number(q.target) ? 0 : Number(q.target);
+          } else if (action === 'inc') {
+            q.current = Math.round((Number(q.current) + Number(q.step || 1)) * 100) / 100;
+          } else if (action === 'dec') {
+            q.current = Math.max(0, Math.round((Number(q.current) - Number(q.step || 1)) * 100) / 100);
+          } else if (action === 'delete') {
+            dayRec.quests = dayRec.quests.filter((x) => x.id !== id);
+            state.questTemplates = state.questTemplates.filter((x) => x.id !== id);
+            saveState();
+            renderFitnessSection(dayRec);
+            return;
+          }
+
+          if (Number(q.current) >= Number(q.target) && !q.rewarded) {
+            q.rewarded = true;
+            addXp(30, `Completed ${q.name}`);
+          }
+          saveState();
+          renderFitnessSection(dayRec);
+          renderHeaderAndDayBar();
+        });
+
+        document.getElementById('quests-list-wrap').addEventListener('change', (e) => {
+          const input = e.target.closest('input[data-q-edit]');
+          if (!input) return;
+          const field = input.getAttribute('data-q-edit');
+          const id = input.getAttribute('data-id');
+          const dayRec = getDayRecord(activeDate);
+          const q = dayRec.quests.find((x) => x.id === id);
+          if (!q) return;
+
+          if (field === 'name') {
+            q.name = input.value.trim() || 'Exercise';
+          } else if (field === 'current') {
+            q.current = Math.max(0, parseFloat(input.value) || 0);
+            if (q.current >= q.target && !q.rewarded) {
+              q.rewarded = true;
+              addXp(30, `Completed ${q.name}`);
+            }
+          } else if (field === 'target') {
+            q.target = Math.max(0.5, parseFloat(input.value) || 1);
+            const tmpl = state.questTemplates.find((t) => t.id === id);
+            if (tmpl) tmpl.target = q.target;
+          }
+          saveState();
+          renderFitnessSection(dayRec);
+          renderHeaderAndDayBar();
+        });
+
+        document.getElementById('add-ex-btn').addEventListener('click', () => {
+          const nameIn = document.getElementById('new-ex-name');
+          const targIn = document.getElementById('new-ex-target');
+          const unitIn = document.getElementById('new-ex-unit');
+
+          const name = nameIn.value.trim();
+          const target = Math.max(0.5, parseFloat(targIn.value) || 10);
+          const unit = unitIn.value || 'reps';
+          if (!name) {
+            showToast('Please enter an exercise name.');
+            return;
+          }
+
+          const newId = 'ex_' + Date.now();
+          const step = unit === 'km' ? 0.5 : 5;
+          const newQuest = { id: newId, name, current: 0, target, unit, step, rewarded: false };
+
+          getDayRecord(activeDate).quests.push(newQuest);
+          state.questTemplates.push({ id: newId, name, target, unit, step });
+
+          nameIn.value = '';
+          targIn.value = '';
+          saveState();
+          renderFitnessSection(getDayRecord(activeDate));
+          showToast(`Added "${name}" to Daily Fitness Tracker!`);
+        });
+
+        document.getElementById('diet-goal-input').addEventListener('input', (e) => {
+          const val = parseInt(e.target.value, 10);
+          if (val >= 500) {
+            const dayRec = getDayRecord(activeDate);
+            dayRec.calorieGoal = val;
+            state.profile.dailyCalorieGoal = val;
+            saveState();
+            renderDietSection(dayRec);
+          }
+        });
+
+        document.getElementById('protein-goal-input').addEventListener('input', (e) => {
+          const val = parseInt(e.target.value, 10);
+          if (val >= 20) {
+            const dayRec = getDayRecord(activeDate);
+            dayRec.proteinGoal = val;
+            state.profile.dailyProteinGoal = val;
+            saveState();
+            renderDietSection(dayRec);
+          }
+        });
+
+        document.getElementById('save-preset-btn').addEventListener('click', () => {
+          const name = document.getElementById('preset-name-in').value.trim();
+          const kcal = parseInt(document.getElementById('preset-kcal-in').value, 10) || 0;
+          const protein = parseInt(document.getElementById('preset-prot-in').value, 10) || 0;
+          if (!name) {
+            showToast('Enter a meal name to save to your Diet Plan.');
+            return;
+          }
+          state.dietPresets.push({ id: 'pr_' + Date.now(), name, kcal, protein });
+          document.getElementById('preset-name-in').value = '';
+          document.getElementById('preset-kcal-in').value = '';
+          document.getElementById('preset-prot-in').value = '';
+          saveState();
+          renderDietSection(getDayRecord(activeDate));
+          showToast(`Saved "${name}" to your Diet Plan!`);
+        });
+
+        document.getElementById('diet-presets-wrap').addEventListener('click', (e) => {
+          const addBtn = e.target.closest('button[data-pr-add]');
+          const delBtn = e.target.closest('button[data-pr-del]');
+          const dayRec = getDayRecord(activeDate);
+
+          if (addBtn) {
+            const pr = state.dietPresets.find((x) => x.id === addBtn.getAttribute('data-pr-add'));
+            if (!pr) return;
+            dayRec.meals.unshift({
+              id: 'm_' + Date.now(),
+              name: pr.name,
+              kcal: pr.kcal,
+              protein: pr.protein || 0
+            });
+            addXp(10, `Logged ${pr.name}`);
+            saveState();
+            renderDietSection(dayRec);
+            renderHeaderAndDayBar();
+          } else if (delBtn) {
+            const id = delBtn.getAttribute('data-pr-del');
+            state.dietPresets = state.dietPresets.filter((x) => x.id !== id);
+            saveState();
+            renderDietSection(dayRec);
+          }
+        });
+
+        document.getElementById('add-food-btn').addEventListener('click', () => {
+          const nameIn = document.getElementById('food-name-in');
+          const kcalIn = document.getElementById('food-kcal-in');
+          const protIn = document.getElementById('food-prot-in');
+
+          const name = nameIn.value.trim();
+          const kcal = parseInt(kcalIn.value, 10) || 0;
+          const protein = parseInt(protIn.value, 10) || 0;
+          if (!name && kcal <= 0) {
+            showToast('Please enter a food name and calories.');
+            return;
+          }
+
+          const dayRec = getDayRecord(activeDate);
+          dayRec.meals.unshift({
+            id: 'm_' + Date.now(),
+            name: name || 'Meal Item',
+            kcal,
+            protein
+          });
+
+          nameIn.value = '';
+          kcalIn.value = '';
+          protIn.value = '';
+          addXp(10, `Logged ${name || 'Meal'}`);
+          saveState();
+          renderDietSection(dayRec);
+          renderHeaderAndDayBar();
+        });
+
+        document.getElementById('food-log-list-wrap').addEventListener('change', (e) => {
+          const inp = e.target.closest('input[data-m-edit]');
+          if (!inp) return;
+          const field = inp.getAttribute('data-m-edit');
+          const id = inp.getAttribute('data-id');
+          const dayRec = getDayRecord(activeDate);
+          const meal = dayRec.meals.find((m) => m.id === id);
+          if (!meal) return;
+
+          if (field === 'name') meal.name = inp.value.trim() || 'Meal';
+          if (field === 'kcal') meal.kcal = Math.max(0, parseInt(inp.value, 10) || 0);
+          if (field === 'protein') meal.protein = Math.max(0, parseInt(inp.value, 10) || 0);
+
+          saveState();
+          renderDietSection(dayRec);
+          renderHeaderAndDayBar();
+        });
+
+        document.getElementById('food-log-list-wrap').addEventListener('click', (e) => {
+          const delBtn = e.target.closest('button[data-m-del]');
+          if (!delBtn) return;
+          const id = delBtn.getAttribute('data-m-del');
+          const dayRec = getDayRecord(activeDate);
+          dayRec.meals = dayRec.meals.filter((m) => m.id !== id);
+          saveState();
+          renderDietSection(dayRec);
+          renderHeaderAndDayBar();
+        });
+
+        document.getElementById('sfx-toggle-btn').addEventListener('click', () => {
+          state.progression.sfxEnabled = state.progression.sfxEnabled === false;
+          saveState();
+          renderHeaderAndDayBar();
+          if (state.progression.sfxEnabled) {
+            playSfx('click');
+            showToast('System Sound Effects: ON');
+          } else {
+            showToast('System Sound Effects: OFF');
+          }
+        });
+
+        document.getElementById('open-history-btn').addEventListener('click', () => {
+          document.getElementById('history-modal').classList.add('open');
+          renderHistoryModal();
+        });
+
+        document.getElementById('close-history-btn').addEventListener('click', () => {
+          document.getElementById('history-modal').classList.remove('open');
+        });
+
+        document.querySelectorAll('button[data-chart]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            activeChartType = btn.getAttribute('data-chart');
+            document.querySelectorAll('button[data-chart]').forEach((b) => {
+              b.classList.toggle('btn-soft', b !== btn);
+            });
+            drawHistoryChart();
+          });
+        });
+
+        document.getElementById('chart-days-select').addEventListener('change', drawHistoryChart);
+        window.addEventListener('resize', () => {
+          if (document.getElementById('history-modal').classList.contains('open')) {
+            drawHistoryChart();
+          }
+        });
+
+        document.getElementById('history-list-container').addEventListener('click', (e) => {
+          const jumpBtn = e.target.closest('button[data-jump-date]');
+          if (!jumpBtn) return;
+          activeDate = jumpBtn.getAttribute('data-jump-date');
+          document.getElementById('history-modal').classList.remove('open');
+          renderAll();
+          showToast(`Loaded record for ${activeDate}`);
+        });
+
+        document.getElementById('export-data-btn').addEventListener('click', () => {
+          const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `fitcore_backup_${getTodayDateString()}.json`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          showToast('Exported your FitCore backup (.json)!');
+        });
+
+        document.getElementById('import-data-file').addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = (evt) => {
+            try {
+              const parsed = JSON.parse(evt.target.result);
+              const incoming = parsed.data ? parsed.data : parsed;
+              if (!incoming || !incoming.profile) {
+                showToast('Invalid JSON backup file.');
+                return;
+              }
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(incoming));
+              state = loadState();
+              renderAll();
+              showToast('Backup data imported successfully!');
+            } catch (err) {
+              showToast('Could not read JSON file.');
+            }
+          };
+          reader.readAsText(file);
+          e.target.value = '';
+        });
+      }
+
+      window.addEventListener('DOMContentLoaded', () => {
+        bindEvents();
+        updateSystemClockAndCheckMidnight();
+        renderAll();
+
+        // Run automatic clock update every second and check midnight rollover
+        setInterval(updateSystemClockAndCheckMidnight, 1000);
+      });
+    })();
+  </script>
+</body>
+</html>
